@@ -29,12 +29,12 @@ title-slide-attributes:
 ## Snail Syntax
 
 ```{.default code-line-numbers="|1|2|3,5|4,6|"}
-init([0.0,5.0],[-2.0,2.0])
+init([0,5],[0,5])
 repeat:
     either:
-        move(1.0,0.0)
+        move(1,0)
     or:
-        move(0.0,1.0)
+        move(0,1)
 ```
 
 ## Snail Semantics
@@ -44,7 +44,7 @@ Given a `snail` program $P$:
 :::: {.columns}
 ::: {.column .fragment width="33%"}
 ![](images/semantics_1.excalidraw.png){width="80%"}
-$\texttt{eval}(P) \subseteq \mathbb{R}^2$
+$\texttt{eval}(P) \subset \mathbb{R}^2$
 :::
 
 ::: {.column .fragment width="33%"}
@@ -60,7 +60,7 @@ $[\![P]\!] = \bigcup \texttt{eval}(P)$
 
 ## Safety in Snail
 
-- When is a `snail` program $P$ safe?
+When is a `snail` program $P$ safe?
 
 $$\texttt{safe}(P) \Longleftrightarrow [\![P]\!] \cap \text{Gardens} = \varnothing$$
 
@@ -68,11 +68,14 @@ $$\texttt{safe}(P) \Longleftrightarrow [\![P]\!] \cap \text{Gardens} = \varnothi
 
 ## Proving safety
 
+:::{.incremental}
 - In general: $[\![P]\!]$ not computable
-- We can over-approximate it though $\langle P \rangle$
-- Sound: $\langle P \rangle \cap \text{Gardens} = \varnothing$ $\Rightarrow$ safety
-- What is a good abstraction/over-approximation?
-- How do we compute $\langle P \rangle$?
+- We can over-approximate it though: $\langle\!\langle P \rangle\!\rangle \supseteq [\![P]\!]$ 
+    - `Sound`: $\langle\!\langle P \rangle\!\rangle \cap \text{Gardens} = \varnothing$ $\Rightarrow$ safety
+    - `Incomplete`: $\langle\!\langle P \rangle\!\rangle \cap \text{Gardens} \neq \varnothing$ $\nRightarrow$ error
+- What is a good abstraction/over-approximation $\langle\!\langle \,. \rangle\!\rangle$?
+- How do we compute $\langle\!\langle P \rangle\!\rangle$?
+:::
 
 ---
 
@@ -89,7 +92,7 @@ $$\texttt{safe}(P) \Longleftrightarrow [\![P]\!] \cap \text{Gardens} = \varnothi
 ## Abstract Interpretation
 
 - Define a suitable `Abstract Domain`
-- Define `abstraction` and `contcretisation`
+- Define `abstraction` and `concretisation`
 - Define `Abstract Semantics`
 
 $$\texttt{analysis}(s, a) = a'$$
@@ -133,8 +136,6 @@ $$
 
 --- 
 
-## Iteration
-
 ```{.default}
 repeat:
     b
@@ -143,20 +144,25 @@ repeat:
 Can be unrolled:
 
 ```{.default}
-either: b
+either:
 or:
-    either: b
+    b
+    either: 
     or:
-        either: b
-        or:
-            ...
+        b
+        ...
 ```
 
-Looking for fixpoint: $\texttt{analysis}(\texttt{repeat}\, b, a_k) = a_{k+1}$ 
+Looking for fixpoint: $\texttt{analysis}(\texttt{repeat}\, b, a_k) = a_{k+1}$
+
+Often uses `widening`: $[a,b] \,\nabla\, [c,d] = [(c < a) \,?\, -\!\infty : a, (b < d) \,?\, \infty : b]$
 
 ## Example
 
 :::{layout="[30, -10, 40]" layout-valign="center"}
+
+::::{.columns}
+:::{.colum width=100%}
 ```{.default}
 init([0,5],[0,5])
 repeat:
@@ -166,14 +172,18 @@ repeat:
         move(0,1)
 ```
 
+$$\langle\!\langle P \rangle\!\rangle = ([0, \infty],[0,\infty])$$
+:::
+::::
+
 ![](images/example.excalidraw.png)
 :::
 
 ## Other Abstract Domains
 
-- Sign
-- Octagons
-- Convex Polyhedra
+- Sign: $\;\mathcal{P}(\{+, -, 0\})$
+- Octagons: $\;\pm x + \pm y \leq c$
+- Convex Polyhedra: $\;c_1 x + c_2 y \leq c_3$
 - ...
 
 ## Conclusion
@@ -181,7 +191,10 @@ repeat:
 - `AI` is a `sound overapproximation` of `program semantics`
 - technique is automatic / push-button
 - basis of many different analyses
-    - e.g. in compilers
+    - EVA (Frama-C)
+    - compilers
+        - array bounds checking
+        - optimisations
 
 ## Thank you!
 
