@@ -1,3 +1,6 @@
 presentation_files/
 presentation.html
 .DS_Store
+/.quarto/
+**/*.quarto_ipynb
+docs/
