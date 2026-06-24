@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "presentation.html#introduction",
+    "href": "presentation.html#introduction",
+    "title": "Abstract Interpretation",
+    "section": "Introduction",
+    "text": "Introduction\n\nForm of static analysis\n\nlearn things about programs without executing them\ncan reason about all possible executions\n\nsound approximation of program semantics\nformalised by Radhia Cousot and Patrick Cousot"
+  },
+  {
+    "objectID": "presentation.html#snail-syntax",
+    "href": "presentation.html#snail-syntax",
+    "title": "Abstract Interpretation",
+    "section": "Snail Syntax",
+    "text": "Snail Syntax\ninit([0.0,5.0],[-2.0,2.0])\nrepeat:\n    either:\n        move(1.0,0.0)\n    or:\n        move(0.0,1.0)"
+  },
+  {
+    "objectID": "presentation.html#snail-semantics",
+    "href": "presentation.html#snail-semantics",
+    "title": "Abstract Interpretation",
+    "section": "Snail Semantics",
+    "text": "Snail Semantics\nGiven a snail program \\(P\\):\n\n\n \\(\\texttt{eval}(P) \\subseteq \\mathbb{R}^2\\)\n\n \\(\\texttt{eval}(P), \\ldots\\)\n\n \\([\\![P]\\!] = \\bigcup \\texttt{eval}(P)\\)"
+  },
+  {
+    "objectID": "presentation.html#safety-in-snail",
+    "href": "presentation.html#safety-in-snail",
+    "title": "Abstract Interpretation",
+    "section": "Safety in Snail",
+    "text": "Safety in Snail\n\nWhen is a snail program \\(P\\) safe?\n\n\\[\\texttt{safe}(P) \\Longleftrightarrow [\\![P]\\!] \\cap \\text{Gardens} = \\varnothing\\]"
+  },
+  {
+    "objectID": "presentation.html#proving-safety",
+    "href": "presentation.html#proving-safety",
+    "title": "Abstract Interpretation",
+    "section": "Proving safety",
+    "text": "Proving safety\n\nIn general: \\([\\![P]\\!]\\) not computable\nWe can over-approximate it though \\(\\langle P \\rangle\\)\nSound: \\(\\langle P \\rangle \\cap \\text{Gardens} = \\varnothing\\) \\(\\Rightarrow\\) safety\nWhat is a good abstraction/over-approximation?\nHow do we compute \\(\\langle P \\rangle\\)?"
+  },
+  {
+    "objectID": "presentation.html#abstract-interpretation",
+    "href": "presentation.html#abstract-interpretation",
+    "title": "Abstract Interpretation",
+    "section": "Abstract Interpretation",
+    "text": "Abstract Interpretation\n\nDefine a suitable Abstract Domain\nDefine abstraction and contcretisation\nDefine Abstract Semantics\n\n\\[\\texttt{analysis}(s, a) = a'\\]"
+  },
+  {
+    "objectID": "presentation.html#iteration",
+    "href": "presentation.html#iteration",
+    "title": "Abstract Interpretation",
+    "section": "Iteration",
+    "text": "Iteration\nrepeat:\n    b\nCan be unrolled:\neither: b\nor:\n    either: b\n    or:\n        either: b\n        or:\n            ...\nLooking for fixpoint: \\(\\texttt{analysis}(\\texttt{repeat}\\, b, a_k) = a_{k+1}\\)"
+  },
+  {
+    "objectID": "presentation.html#other-abstract-domains",
+    "href": "presentation.html#other-abstract-domains",
+    "title": "Abstract Interpretation",
+    "section": "Other Abstract Domains",
+    "text": "Other Abstract Domains\n\nSign\nOctagons\nConvex Polyhedra\n…"
+  },
+  {
+    "objectID": "presentation.html#conclusion",
+    "href": "presentation.html#conclusion",
+    "title": "Abstract Interpretation",
+    "section": "Conclusion",
+    "text": "Conclusion\n\nAI is a sound overapproximation of program semantics\ntechnique is automatic / push-button\nbasis of many different analyses\n\ne.g. in compilers"
+  },
+  {
+    "objectID": "presentation.html#thank-you",
+    "href": "presentation.html#thank-you",
+    "title": "Abstract Interpretation",
+    "section": "Thank you!",
+    "text": "Thank you!\nhttps://github.com/nikolaushuber/snail.git"
+  }
+]
