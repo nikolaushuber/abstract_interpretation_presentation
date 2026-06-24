@@ -56,6 +56,13 @@
     "text": "Other Abstract Domains\n\nSign: \\(\\;\\mathcal{P}(\\{+, -, 0\\})\\)\nOctagons: \\(\\;\\pm x + \\pm y \\leq c\\)\nConvex Polyhedra: \\(\\;c_1 x + c_2 y \\leq c_3\\)\n…"
   },
   {
+    "objectID": "presentation.html#our-use-of-ai",
+    "href": "presentation.html#our-use-of-ai",
+    "title": "Abstract Interpretation",
+    "section": "Our Use of AI",
+    "text": "Our Use of AI"
+  },
+  {
     "objectID": "presentation.html#conclusion",
     "href": "presentation.html#conclusion",
     "title": "Abstract Interpretation",
