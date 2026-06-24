@@ -11,56 +11,56 @@
     "href": "presentation.html#snail-syntax",
     "title": "Abstract Interpretation",
     "section": "Snail Syntax",
-    "text": "Snail Syntax\ninit([0.0,5.0],[-2.0,2.0])\nrepeat:\n    either:\n        move(1.0,0.0)\n    or:\n        move(0.0,1.0)"
+    "text": "Snail Syntax\ninit([0,5],[0,5])\nrepeat:\n    either:\n        move(1,0)\n    or:\n        move(0,1)"
   },
   {
     "objectID": "presentation.html#snail-semantics",
     "href": "presentation.html#snail-semantics",
     "title": "Abstract Interpretation",
     "section": "Snail Semantics",
-    "text": "Snail Semantics\nGiven a snail program \\(P\\):\n\n\n \\(\\texttt{eval}(P) \\subseteq \\mathbb{R}^2\\)\n\n \\(\\texttt{eval}(P), \\ldots\\)\n\n \\([\\![P]\\!] = \\bigcup \\texttt{eval}(P)\\)"
+    "text": "Snail Semantics\nGiven a snail program \\(P\\):\n\n\n \\(\\texttt{eval}(P) \\subset \\mathbb{R}^2\\)\n\n \\(\\texttt{eval}(P), \\ldots\\)\n\n \\([\\![P]\\!] = \\bigcup \\texttt{eval}(P)\\)"
   },
   {
     "objectID": "presentation.html#safety-in-snail",
     "href": "presentation.html#safety-in-snail",
     "title": "Abstract Interpretation",
     "section": "Safety in Snail",
-    "text": "Safety in Snail\n\nWhen is a snail program \\(P\\) safe?\n\n\\[\\texttt{safe}(P) \\Longleftrightarrow [\\![P]\\!] \\cap \\text{Gardens} = \\varnothing\\]"
+    "text": "Safety in Snail\nWhen is a snail program \\(P\\) safe?\n\\[\\texttt{safe}(P) \\Longleftrightarrow [\\![P]\\!] \\cap \\text{Gardens} = \\varnothing\\]"
   },
   {
     "objectID": "presentation.html#proving-safety",
     "href": "presentation.html#proving-safety",
     "title": "Abstract Interpretation",
     "section": "Proving safety",
-    "text": "Proving safety\n\nIn general: \\([\\![P]\\!]\\) not computable\nWe can over-approximate it though \\(\\langle P \\rangle\\)\nSound: \\(\\langle P \\rangle \\cap \\text{Gardens} = \\varnothing\\) \\(\\Rightarrow\\) safety\nWhat is a good abstraction/over-approximation?\nHow do we compute \\(\\langle P \\rangle\\)?"
+    "text": "Proving safety\n\nIn general: \\([\\![P]\\!]\\) not computable\nWe can over-approximate it though: \\(\\langle\\!\\langle P \\rangle\\!\\rangle \\supseteq [\\![P]\\!]\\)\n\nSound: \\(\\langle\\!\\langle P \\rangle\\!\\rangle \\cap \\text{Gardens} = \\varnothing\\) \\(\\Rightarrow\\) safety\nIncomplete: \\(\\langle\\!\\langle P \\rangle\\!\\rangle \\cap \\text{Gardens} \\neq \\varnothing\\) \\(\\nRightarrow\\) error\n\nWhat is a good abstraction/over-approximation \\(\\langle\\!\\langle \\,. \\rangle\\!\\rangle\\)?\nHow do we compute \\(\\langle\\!\\langle P \\rangle\\!\\rangle\\)?"
   },
   {
     "objectID": "presentation.html#abstract-interpretation",
     "href": "presentation.html#abstract-interpretation",
     "title": "Abstract Interpretation",
     "section": "Abstract Interpretation",
-    "text": "Abstract Interpretation\n\nDefine a suitable Abstract Domain\nDefine abstraction and contcretisation\nDefine Abstract Semantics\n\n\\[\\texttt{analysis}(s, a) = a'\\]"
+    "text": "Abstract Interpretation\n\nDefine a suitable Abstract Domain\nDefine abstraction and concretisation\nDefine Abstract Semantics\n\n\\[\\texttt{analysis}(s, a) = a'\\]"
   },
   {
-    "objectID": "presentation.html#iteration",
-    "href": "presentation.html#iteration",
+    "objectID": "presentation.html#example",
+    "href": "presentation.html#example",
     "title": "Abstract Interpretation",
-    "section": "Iteration",
-    "text": "Iteration\nrepeat:\n    b\nCan be unrolled:\neither: b\nor:\n    either: b\n    or:\n        either: b\n        or:\n            ...\nLooking for fixpoint: \\(\\texttt{analysis}(\\texttt{repeat}\\, b, a_k) = a_{k+1}\\)"
+    "section": "Example",
+    "text": "Example\n\n\n\n\ninit([0,5],[0,5])\nrepeat:\n    either:\n        move(1,0)\n    or:\n        move(0,1)\n\\[\\langle\\!\\langle P \\rangle\\!\\rangle = ([0, \\infty],[0,\\infty])\\]"
   },
   {
     "objectID": "presentation.html#other-abstract-domains",
     "href": "presentation.html#other-abstract-domains",
     "title": "Abstract Interpretation",
     "section": "Other Abstract Domains",
-    "text": "Other Abstract Domains\n\nSign\nOctagons\nConvex Polyhedra\n…"
+    "text": "Other Abstract Domains\n\nSign: \\(\\;\\mathcal{P}(\\{+, -, 0\\})\\)\nOctagons: \\(\\;\\pm x + \\pm y \\leq c\\)\nConvex Polyhedra: \\(\\;c_1 x + c_2 y \\leq c_3\\)\n…"
   },
   {
     "objectID": "presentation.html#conclusion",
     "href": "presentation.html#conclusion",
     "title": "Abstract Interpretation",
     "section": "Conclusion",
-    "text": "Conclusion\n\nAI is a sound overapproximation of program semantics\ntechnique is automatic / push-button\nbasis of many different analyses\n\ne.g. in compilers"
+    "text": "Conclusion\n\nAI is a sound overapproximation of program semantics\ntechnique is automatic / push-button\nbasis of many different analyses\n\nEVA (Frama-C)\ncompilers\n\narray bounds checking\noptimisations"
   },
   {
     "objectID": "presentation.html#thank-you",

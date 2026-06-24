@@ -225,19 +225,19 @@ Nikolaus Huber
 <img data-src="images/snail_logo.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="snail-syntax" class="slide level2 center">
 <h2>Snail Syntax</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-code-line-numbers="|1|2|3,5|4,6|"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a></a>init([0.0,5.0],[-2.0,2.0])</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-code-line-numbers="|1|2|3,5|4,6|"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a></a>init([0,5],[0,5])</span>
 <span id="cb1-2"><a></a>repeat:</span>
 <span id="cb1-3"><a></a>    either:</span>
-<span id="cb1-4"><a></a>        move(1.0,0.0)</span>
+<span id="cb1-4"><a></a>        move(1,0)</span>
 <span id="cb1-5"><a></a>    or:</span>
-<span id="cb1-6"><a></a>        move(0.0,1.0)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-6"><a></a>        move(0,1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="snail-semantics" class="slide level2 center">
 <h2>Snail Semantics</h2>
 <p>Given a <code>snail</code> program <span class="math inline">\(P\)</span>:</p>
 <div class="columns">
 <div class="column fragment" style="width:33%;">
-<p><img data-src="images/semantics_1.excalidraw.png" style="width:80.0%"> <span class="math inline">\(\texttt{eval}(P) \subseteq \mathbb{R}^2\)</span></p>
+<p><img data-src="images/semantics_1.excalidraw.png" style="width:80.0%"> <span class="math inline">\(\texttt{eval}(P) \subset \mathbb{R}^2\)</span></p>
 </div><div class="column fragment" style="width:33%;">
 <p><img data-src="images/semantics_2.excalidraw.png" style="width:80.0%"> <span class="math inline">\(\texttt{eval}(P), \ldots\)</span></p>
 </div><div class="column fragment" style="width:33%;">
@@ -246,20 +246,21 @@ Nikolaus Huber
 </section>
 <section id="safety-in-snail" class="slide level2 center">
 <h2>Safety in Snail</h2>
-<ul>
-<li>When is a <code>snail</code> program <span class="math inline">\(P\)</span> safe?</li>
-</ul>
+<p>When is a <code>snail</code> program <span class="math inline">\(P\)</span> safe?</p>
 <p><span class="math display">\[\texttt{safe}(P) \Longleftrightarrow [\![P]\!] \cap \text{Gardens} = \varnothing\]</span></p>
 
 <img data-src="images/safety.excalidraw.png" class="r-stretch"></section>
 <section id="proving-safety" class="slide level2 center">
 <h2>Proving safety</h2>
 <ul>
-<li>In general: <span class="math inline">\([\![P]\!]\)</span> not computable</li>
-<li>We can over-approximate it though <span class="math inline">\(\langle P \rangle\)</span></li>
-<li>Sound: <span class="math inline">\(\langle P \rangle \cap \text{Gardens} = \varnothing\)</span> <span class="math inline">\(\Rightarrow\)</span> safety</li>
-<li>What is a good abstraction/over-approximation?</li>
-<li>How do we compute <span class="math inline">\(\langle P \rangle\)</span>?</li>
+<li class="fragment">In general: <span class="math inline">\([\![P]\!]\)</span> not computable</li>
+<li class="fragment">We can over-approximate it though: <span class="math inline">\(\langle\!\langle P \rangle\!\rangle \supseteq [\![P]\!]\)</span>
+<ul>
+<li class="fragment"><code>Sound</code>: <span class="math inline">\(\langle\!\langle P \rangle\!\rangle \cap \text{Gardens} = \varnothing\)</span> <span class="math inline">\(\Rightarrow\)</span> safety</li>
+<li class="fragment"><code>Incomplete</code>: <span class="math inline">\(\langle\!\langle P \rangle\!\rangle \cap \text{Gardens} \neq \varnothing\)</span> <span class="math inline">\(\nRightarrow\)</span> error</li>
+</ul></li>
+<li class="fragment">What is a good abstraction/over-approximation <span class="math inline">\(\langle\!\langle \,. \rangle\!\rangle\)</span>?</li>
+<li class="fragment">How do we compute <span class="math inline">\(\langle\!\langle P \rangle\!\rangle\)</span>?</li>
 </ul>
 </section>
 <section class="slide level2 center">
@@ -278,7 +279,7 @@ Nikolaus Huber
 <h2>Abstract Interpretation</h2>
 <ul>
 <li>Define a suitable <code>Abstract Domain</code></li>
-<li>Define <code>abstraction</code> and <code>contcretisation</code></li>
+<li>Define <code>abstraction</code> and <code>concretisation</code></li>
 <li>Define <code>Abstract Semantics</code></li>
 </ul>
 <p><span class="math display">\[\texttt{analysis}(s, a) = a'\]</span></p>
@@ -325,26 +326,51 @@ Nikolaus Huber
 \]</span></p>
 </div>
 </section>
-<section id="iteration" class="slide level2 center">
-<h2>Iteration</h2>
+<section class="slide level2 center">
+
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a></a>repeat:</span>
 <span id="cb2-2"><a></a>    b</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Can be unrolled:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a></a>either: b</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a></a>either:</span>
 <span id="cb3-2"><a></a>or:</span>
-<span id="cb3-3"><a></a>    either: b</span>
-<span id="cb3-4"><a></a>    or:</span>
-<span id="cb3-5"><a></a>        either: b</span>
-<span id="cb3-6"><a></a>        or:</span>
-<span id="cb3-7"><a></a>            ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-3"><a></a>    b</span>
+<span id="cb3-4"><a></a>    either: </span>
+<span id="cb3-5"><a></a>    or:</span>
+<span id="cb3-6"><a></a>        b</span>
+<span id="cb3-7"><a></a>        ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Looking for fixpoint: <span class="math inline">\(\texttt{analysis}(\texttt{repeat}\, b, a_k) = a_{k+1}\)</span></p>
+<p>Often uses <code>widening</code>: <span class="math inline">\([a,b] \,\nabla\, [c,d] = [(c &lt; a) \,?\, -\!\infty : a, (b &lt; d) \,?\, \infty : b]\)</span></p>
+</section>
+<section id="example" class="slide level2 center">
+<h2>Example</h2>
+<div class="quarto-layout-panel" data-layout="[30, -10, 40]">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="columns quarto-layout-cell" style="flex-basis: 37.5%;justify-content: flex-start;">
+<div class="colum" width="100%">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a></a>init([0,5],[0,5])</span>
+<span id="cb4-2"><a></a>repeat:</span>
+<span id="cb4-3"><a></a>    either:</span>
+<span id="cb4-4"><a></a>        move(1,0)</span>
+<span id="cb4-5"><a></a>    or:</span>
+<span id="cb4-6"><a></a>        move(0,1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span class="math display">\[\langle\!\langle P \rangle\!\rangle = ([0, \infty],[0,\infty])\]</span></p>
+</div>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 12.5%;justify-content: flex-start;">
+<p>&nbsp;</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="images/example.excalidraw.png"></p>
+</div>
+</div>
+</div>
 </section>
 <section id="other-abstract-domains" class="slide level2 center">
 <h2>Other Abstract Domains</h2>
 <ul>
-<li>Sign</li>
-<li>Octagons</li>
-<li>Convex Polyhedra</li>
+<li>Sign: <span class="math inline">\(\;\mathcal{P}(\{+, -, 0\})\)</span></li>
+<li>Octagons: <span class="math inline">\(\;\pm x + \pm y \leq c\)</span></li>
+<li>Convex Polyhedra: <span class="math inline">\(\;c_1 x + c_2 y \leq c_3\)</span></li>
 <li>…</li>
 </ul>
 </section>
@@ -355,7 +381,12 @@ Nikolaus Huber
 <li>technique is automatic / push-button</li>
 <li>basis of many different analyses
 <ul>
-<li>e.g.&nbsp;in compilers</li>
+<li>EVA (Frama-C)</li>
+<li>compilers
+<ul>
+<li>array bounds checking</li>
+<li>optimisations</li>
+</ul></li>
 </ul></li>
 </ul>
 </section>
@@ -651,7 +682,7 @@ Nikolaus Huber
         }
           var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
           var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp('/' + window.location.host + '/');
+            var filterRegex = new RegExp("https:\/\/nikolaushuber\.github\.io\/abstract_interpretation_presentation\/");
           var isInternal = (href) => {
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }
