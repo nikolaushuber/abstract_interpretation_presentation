@@ -154,6 +154,21 @@ or:
 
 Looking for fixpoint: $\texttt{analysis}(\texttt{repeat}\, b, a_k) = a_{k+1}$ 
 
+## Example
+
+:::{layout="[30, -10, 40]" layout-valign="center"}
+```{.default}
+init([0,5],[0,5])
+repeat:
+    either:
+        move(1,0)
+    or:
+        move(0,1)
+```
+
+![](images/example.excalidraw.png)
+:::
+
 ## Other Abstract Domains
 
 - Sign
