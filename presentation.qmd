@@ -186,6 +186,10 @@ $$\langle\!\langle P \rangle\!\rangle = ([0, \infty],[0,\infty])$$
 - Convex Polyhedra: $\;c_1 x + c_2 y \leq c_3$
 - ...
 
+## Our Use of AI
+
+![](papers/dalmas.png){fig-align="center"}
+
 ## Conclusion
 
 - `AI` is a `sound overapproximation` of `program semantics`
