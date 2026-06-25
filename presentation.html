@@ -299,7 +299,7 @@ Nikolaus Huber
 <p><img data-src="images/abstraction_init.excalidraw.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
 </figure>
 </div>
-<p><span class="math display">\[\small\texttt{analysis}(\texttt{init}([x_1, x_2], [y_1, y_2], \text{_}) = ([x1, x2], [y1, y2])\]</span></p>
+<p><span class="math display">\[\small\texttt{analysis}(\texttt{init}([x_1, x_2], [y_1, y_2], \text{_}) = ([x_1, x_2], [y_1, y_2])\]</span></p>
 </section>
 <section class="slide level2 center">
 
@@ -338,7 +338,7 @@ Nikolaus Huber
 <span id="cb3-5"><a></a>    or:</span>
 <span id="cb3-6"><a></a>        b</span>
 <span id="cb3-7"><a></a>        ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Looking for fixpoint: <span class="math inline">\(\texttt{analysis}(\texttt{repeat}\, b, a_k) = a_{k+1}\)</span></p>
+<p>Looking for fixpoint: <span class="math inline">\(\;\texttt{analysis}(b, a_k) = a_{k+1}\)</span></p>
 <p>Often uses <code>widening</code>: <span class="math inline">\([a,b] \,\nabla\, [c,d] = [(c &lt; a) \,?\, -\!\infty : a, (b &lt; d) \,?\, \infty : b]\)</span></p>
 </section>
 <section id="example" class="slide level2 center">
