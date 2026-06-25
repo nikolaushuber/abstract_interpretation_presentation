@@ -110,7 +110,7 @@ $$\texttt{analysis}(s, a) = a'$$
 ![](images/abstraction_init.excalidraw.png){.nostretch fig-align="center" width="40%"}
 
 
-$$\small\texttt{analysis}(\texttt{init}([x_1, x_2], [y_1, y_2], \text{_}) = ([x1, x2], [y1, y2])$$ 
+$$\small\texttt{analysis}(\texttt{init}([x_1, x_2], [y_1, y_2], \text{_}) = ([x_1, x_2], [y_1, y_2])$$ 
 
 
 ---
@@ -153,7 +153,7 @@ or:
         ...
 ```
 
-Looking for fixpoint: $\texttt{analysis}(\texttt{repeat}\, b, a_k) = a_{k+1}$
+Looking for fixpoint: $\;\texttt{analysis}(b, a_k) = a_{k+1}$
 
 Often uses `widening`: $[a,b] \,\nabla\, [c,d] = [(c < a) \,?\, -\!\infty : a, (b < d) \,?\, \infty : b]$
 
